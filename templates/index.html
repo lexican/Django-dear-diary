@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{%block content%}
+    <div class="container my-4">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="{% url 'create' %}" class="btn btn-primary btn-sm">Create Post</a>
+                {% for post in posts %}
+                        <div class="content mb-1">
+                            <p>
+                                <strong>{{ post.date_posted }} : {{ post.date_posted | timesince}}  ago</strong>
+                                <br>
+                                <hr>{{ post.text }}
+                            </p>
+                            <a href="{% url 'update-post' post.id %}" class="btn btn-primary btn-sm">Update</a>
+                            <a href="{% url 'delete-post' post.id %}" class="btn btn-primary btn-sm">Delete</a>
+                        </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{%endblock%}
